@@ -1,0 +1,601 @@
+/* index.css - Particles + Glass theme (Green Neon Style) */
+
+/* Reset */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: "Inter", "Poppins", sans-serif; 
+}
+
+/* Full page */
+html,body { height: 100%; }
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-black);
+  color: var(--text-light);
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Root colors */
+:root {
+    --bg-black: #000000;
+    --bg-drawer: rgba(20,20,20,0.95);
+
+    --text-light: #00ff66;         /* Green text */
+    --accent-green: #00ff66;       /* Neon green */
+    --accent-green-soft: #00ff95;  /* softer green */
+
+    --card-bg: rgba(30,30,30,0.5);
+    --card-border: rgba(0,255,102,0.3);  /* green border */
+
+    /* Logo prism colors remain */
+    --accent-red: #ff3c3c;
+    --accent-blue: #3cafff;
+    --accent-green-logo: #00ff80;
+    --accent-purple: #a14fff;
+    --accent-cyan: #00ffe0;
+
+    --text-primary: #00ff95;
+    --text-secondary: #8affc1;
+}
+
+/* Particle canvas */
+#particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: transparent;
+}
+
+/* Center wrapper */
+.center-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+}
+
+/* Glass card */
+.glass-card {
+  background-color: var(--card-bg);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 6px 25px rgba(0,255,102,0.25); /* green glow */
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  text-align: center;
+  animation: cardIn .6s cubic-bezier(.2,.9,.3,1);
+}
+
+/* Dashboard container */
+.dashboard-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Drawer */
+.dashboard-drawer {
+    width: 250px;
+    background-color: var(--bg-drawer);
+    backdrop-filter: blur(15px) saturate(120%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,255,102,0.25);
+}
+
+/* Drawer Title */
+.drawer-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--accent-green); /* GREEN */
+}
+
+/* Sidebar Nav Links */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--accent-green);
+    transition: all 0.25s ease;
+}
+
+.sidebar-nav .nav-item:hover,
+.sidebar-nav .nav-item.active {
+    background: rgba(0,255,102,0.15);
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+/* Drawer Footer Glass Card */
+.drawer-footer {
+    margin-top: 20px;
+}
+
+.drawer-footer .glass-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    border-radius: 18px;
+    padding: 15px;
+    box-shadow: 0 10px 40px rgba(0,255,102,0.3);
+    backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid rgba(0,255,102,0.25);
+    text-align: center;
+    color: var(--accent-green);
+}
+
+.drawer-footer .glass-card button {
+    margin-top: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: rgba(0,255,102,0.3);
+    color: var(--accent-green);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.drawer-footer .glass-card button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .dashboard-drawer { width: 220px; padding: 15px; }
+}
+@media (max-width: 480px) {
+    .dashboard-container { flex-direction: column; }
+    .dashboard-drawer {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .drawer-footer { display: none; }
+}
+
+/* ------------ logo part ---------- */
+
+.logo {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	position: relative;
+    margin-bottom: 30px; /* Adjust this value for spacing */
+}
+
+.logo-icon {
+	width: 45px;
+	height: 45px;
+	margin-right: 15px;
+	position: relative;
+}
+
+/* Prism-inspired logo */
+.logo-prism {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.prism-shape {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	transform: rotate(45deg);
+	background: linear-gradient(135deg,
+			var(--accent-red) 0%,
+			var(--accent-blue) 33%,
+			var(--accent-green) 66%,
+			var(--accent-purple) 100%);
+	animation: prismShine 3s ease-in-out infinite;
+}
+
+@keyframes prismShine {
+
+	0%,
+	100% {
+		filter: brightness(1) hue-rotate(0deg);
+		transform: rotate(45deg) scale(1);
+	}
+
+	50% {
+		filter: brightness(1.5) hue-rotate(10deg);
+		transform: rotate(45deg) scale(1.1);
+	}
+}
+
+.prism-shape::before,
+.prism-shape::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	opacity: 0.5;
+}
+
+.prism-shape::before {
+	transform: rotate(60deg);
+}
+
+.prism-shape::after {
+	transform: rotate(-60deg);
+}
+
+.logo-text {
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.logo-text .prism {
+    background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* fallback */
+}
+
+    .sidebar-logo {
+        margin-bottom: 0;
+    }
+
+.logo-text .flux {
+	color: var(--text-secondary);
+    font-size: 15px;
+	font-weight: 300;
+	margin-left: 5px;
+}
+
+/* Main content */
+.dashboard-main {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Sections */
+.dashboard-section { display: none; }
+.dashboard-section.active { display: block; }
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0,255,102,0.4); /* green hover glow */
+}
+
+@keyframes cardIn {
+    from { transform: translateY(20px) scale(.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.glass-card h1, .glass-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    color: var(--accent-green);
+}
+
+.glass-card p {
+    font-size: 1rem;
+    color: var(--accent-green-soft);
+}
+
+/* Scrollbar */
+.dashboard-main::-webkit-scrollbar { width: 10px; }
+.dashboard-main::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+.dashboard-main::-webkit-scrollbar-thumb { background: rgba(0,255,102,0.4); }
+
+/* Drawer menu hover */
+.drawer-menu li:hover,
+.drawer-menu li.active {
+    background: rgba(0,255,102,0.2);
+    color: #b6ffd9;
+}
+
+/* Logout button gradient */
+.drawer-footer button {
+    background: linear-gradient(90deg,#00ff66,#00cc55);
+}
+
+/* Home section */
+.welcome-card { text-align: center; margin-bottom: 25px; }
+
+.welcome-header {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: var(--accent-green-soft);
+}
+
+
+
+/* ============================================
+   BUTTON STYLES (PREMIUM) — GREEN NEON THEME
+============================================ */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.25s ease;
+    letter-spacing: 0.3px;
+}
+
+/* Primary Button (GREEN NEON) */
+.btn.primary {
+    background: linear-gradient(135deg, #00cc55, #00ff77);
+    color: #000;
+    box-shadow: 0 6px 20px rgba(0,255,102,0.4);
+}
+.btn.primary:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+/* Danger Button (RED SAME) */
+.btn.danger {
+    background: linear-gradient(135deg, #ff5252, #d60000);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(255, 50, 50, 0.35);
+}
+.btn.danger:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+/* File Input */
+input[type="file"] {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,255,102,0.35);
+    color: #aaffcc;
+    cursor: pointer;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: 0.25s ease;
+}
+input[type="file"]:hover {
+    background: rgba(0,255,102,0.12);
+}
+
+/* ============================================
+   FILE CONTROL CARD
+============================================ */
+.file-control-card {
+    padding: 28px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    color: #b6ffd9;
+}
+
+.upload-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 5px;
+}
+
+.buttons-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 5px;
+}
+
+.file-name {
+    font-weight: 700;
+    color: #00ff99;
+}
+
+/* ============================================
+   TABLE CARD
+============================================ */
+.table-card {
+    padding: 28px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 12px;
+    border-radius: 12px;
+}
+
+#stockTable {
+    width: 100%;
+    border-collapse: collapse;
+    backdrop-filter: blur(8px);
+}
+
+/* TABLE HEADER */
+#stockTable thead {
+    background: rgba(0,255,102,0.25);
+}
+
+#stockTable th {
+    padding: 12px 14px;
+    color: #ccffe8;
+    font-size: 0.95rem;
+    text-align: center;
+    border-bottom: 1px solid #003300;
+}
+
+/* TABLE BODY */
+#stockTable td {
+    padding: 10px 12px;
+    color: #baffd1;
+    border-bottom: 1px solid #003300;
+}
+
+/* Row Hover */
+#stockTable tbody tr:hover {
+    background: rgba(0,255,102,0.18);
+}
+
+/* Sl No column */
+#stockTable th:first-child,
+#stockTable td:first-child {
+    width: 55px;
+    text-align: center;
+}
+
+/* ============================================
+   Text Input — Green Neon
+============================================ */
+.text-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+
+    color: #c8ffe0;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0,255,102,0.35);
+    border-radius: 12px;
+
+    outline: none;
+    transition: 0.25s ease;
+    backdrop-filter: blur(6px);
+
+    box-shadow: 0 6px 20px rgba(0,255,102,0.2);
+}
+
+.text-input::placeholder {
+    color: rgba(200, 255, 220, 0.35);
+}
+
+.text-input:hover {
+    background: rgba(0, 255, 102, 0.08);
+}
+
+.text-input:focus {
+    background: rgba(0, 80, 40, 0.25);
+    border-color: rgba(0,255,102,0.5);
+    box-shadow: 0 0 18px rgba(0,255,102,0.4);
+}
+
+/* ============================================
+   POPUP OVERLAY
+============================================ */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 15, 30, 0.75);
+    backdrop-filter: blur(7px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Popup Box */
+.popup-box {
+    background: rgba(0, 60, 20, 0.4);
+    border: 1px solid rgba(0,255,102,0.35);
+    border-radius: 16px;
+    padding: 25px 30px;
+    width: 350px;
+    text-align: center;
+    color: #00ff99;
+    box-shadow: 0 0 30px rgba(0,255,102,0.3);
+    animation: popupIn 0.3s ease;
+}
+
+/* Popup Title */
+.popup-box h2 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: #00ff99;
+    text-shadow: 0 0 12px rgba(0,255,102,0.3);
+}
+
+/* Popup Message */
+.popup-box p {
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #d6ffe8;
+}
+
+/* OK Button */
+#popupOkBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(90deg,#00cc55,#00ff77);
+    color: #000;
+
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(0,255,102,0.35);
+    transition: transform 0.2s, filter 0.2s;
+}
+
+#popupOkBtn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+/* Popup Animation */
+@keyframes popupIn {
+    from { transform: translateY(20px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* View Link */
+.view-link {
+    color: #00ff77;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #00ff77;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.view-link:hover {
+    background: #00ff77;
+    color: #000;
+}
