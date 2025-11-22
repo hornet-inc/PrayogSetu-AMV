@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrayogSetu Admin Dashboard</title>
+    <link rel="stylesheet" href="css/managerdash.css">
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="js/firebase-core.js"></script>
+</head>
+<body>
+    <!-- Particle background -->
+    <canvas id="particles"></canvas>
+
+    <!-- Dashboard container -->
+    <div class="dashboard-container">
+
+<!-- Left Drawer -->
+<aside class="dashboard-drawer">
+    <!-- Drawer Title / Logo -->
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+        <a href="managerdash.html" class="nav-item active">
+            <span class="icon">🏠</span> Home
+        </a>
+        <a href="components.html" class="nav-item">
+            <span class="icon">🧩</span> Components
+        </a>
+        <a href="projects.html" class="nav-item">
+            <span class="icon">📁</span> Projects
+        </a>
+        <a href="blogs.html" class="nav-item">
+            <span class="icon">📝</span> Blogs
+        </a>
+        <a href="events.html" class="nav-item">
+            <span class="icon">📅</span> Events
+        </a>
+        <a href="inventory.html" class="nav-item">
+            <span class="icon">📨</span> Inventory
+        </a>
+        <a href="clubs.html" class="nav-item">
+            <span class="icon">🎯</span> Clubs
+        </a>
+    </nav>
+
+    <!-- User Info + Logout -->
+    <div class="drawer-footer">
+        <div class="glass-card" style="padding:15px; text-align:center;">
+            <p id="loggedInName">-</p>
+            <p id="loggedInRole">Secondary Admin</p>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main content -->
+<main class="dashboard-main">
+    <section id="home" class="dashboard-section active">
+
+        <!-- Welcome Header -->
+        <div class="glass-card welcome-card">
+            <h1 class="welcome-header">Welcome, Manager!</h1>
+            <p>Here's a quick overview of your database vitals</p>
+        </div>
+    </section>
+</main>
+
+    </div>
+
+    <script src="js/managerdash.js"></script>
+</body>
+</html>
