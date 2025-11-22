@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PrayogSetu Admin Login</title>
+
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- Core (init + session) -->
+  <script src="js/firebase-core.js"></script>
+</head>
+<body>
+  <!-- Particle canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Login container -->
+  <div class="center-wrap">
+    <div class="glass-card">
+<div class="logo-container">
+    <a href="#" class="logo">
+        <div class="logo-icon">
+            <div class="logo-prism">
+                <div class="prism-shape"></div>
+            </div>
+        </div>
+        <div class="logo-text">
+            <span class="prism">PrayogSetu</span>
+            <span class="flux">Innovation Lab</span>
+            <span class="flux">AMV Login</span>
+        </div>
+    </a>
+</div>
+
+
+      <form id="loginForm" class="login-form" autocomplete="off">
+        <input id="email" type="email" placeholder="Email" required autocomplete="off" />
+        <input id="password" type="password" placeholder="Password" required autocomplete="current-password" />
+        <button id="loginBtn" type="submit">Sign in</button>
+        <div id="error-msg" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dialog overlay -->
+  <div id="dialogOverlay" class="dialog-overlay hidden">
+    <div class="dialog-card">
+      <div class="dialog-icon" id="dialogIcon"></div>
+      <h2 id="dialogTitle">Title</h2>
+      <p id="dialogMessage">Message</p>
+      <button id="dialogBtn">OK</button>
+    </div>
+  </div>
+  <!-- SUCCESS POPUP -->
+<div id="popupOverlay" class="popup-overlay hidden">
+    <div class="popup-box">
+        <h2 id="popupTitle">Welcome</h2>
+        <p id="popupMessage">Successfully logged in.</p>
+        <button id="popupBtn">Okay</button>
+    </div>
+</div>
+
+<!-- FAILURE POPUP -->
+<div id="errorOverlay" class="popup-overlay hidden">
+    <div class="popup-box popup-error">
+        <h2>Unauthorized User</h2>
+        <p>You do not have access to this dashboard.</p>
+        <button id="errorBtn">Close</button>
+    </div>
+</div>
+
+
+  <script src="js/index.js"></script>
+</body>
+</html>
