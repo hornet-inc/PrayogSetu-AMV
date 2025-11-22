@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrayogSetu Admin Dashboard</title>
+    <link rel="stylesheet" href="css/clubs.css">
+    <!-- Firebase App -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="js/firebase-core.js"></script>
+</head>
+<body>
+    <!-- Particle background -->
+    <canvas id="particles"></canvas>
+
+    <!-- Dashboard container -->
+    <div class="dashboard-container">
+
+<!-- Left Drawer -->
+<aside class="dashboard-drawer">
+    <!-- Drawer Title / Logo -->
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+        <a href="admindash.html" class="nav-item">
+            <span class="icon">🏠</span> Home
+        </a>
+        <a href="components.html" class="nav-item">
+            <span class="icon">🧩</span> Components
+        </a>
+        <a href="projects.html" class="nav-item">
+            <span class="icon">📁</span> Projects
+        </a>
+        <a href="blogs.html" class="nav-item">
+            <span class="icon">📝</span> Blogs
+        </a>
+        <a href="events.html" class="nav-item">
+            <span class="icon">📅</span> Events
+        </a>
+        <a href="inventory.html" class="nav-item">
+            <span class="icon">📨</span> Inventory
+        </a>
+        <a href="clubs.html" class="nav-item active">
+            <span class="icon">🎯</span> Clubs
+        </a>
+    </nav>
+
+    <!-- User Info + Logout -->
+    <div class="drawer-footer">
+        <div class="glass-card" style="padding:15px; text-align:center;">
+            <p id="loggedInName">-</p>
+            <p id="loggedInRole">Primary Admin</p>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main content -->
+<main class="dashboard-main">
+    <section id="components" class="dashboard-section active">
+
+        <!-- Header -->
+        <div class="glass-card welcome-card component-header">
+            <div class="header-text">
+                <h1 class="welcome-header">🎭 Clubs Dashboard</h1>
+                <p>Manage student clubs, engage students, and track users.</p>
+            </div>
+        </div>
+
+<!-- Upload + Controls -->
+<div class="glass-card file-control-card elegant-card">
+    <h2 class="section-title"> Clubs Log Manager</h2>
+
+    <div class="upload-controls">
+
+        <!-- GOOGLE SHEETS LINK INPUT -->
+        <label class="input-label">Enter Google Sheets Link:</label>
+        <input type="text" id="googleSheetURL" placeholder="Paste Google Sheets URL here..." class="text-input" />
+
+        <div class="buttons-row">
+            <button id="uploadBtn" class="btn primary">Load Clubs</button>
+            <button id="deleteBtn" class="btn danger">Clear</button>
+        </div>
+
+        <p id="fileStatus">
+            Current Source: 
+            <span id="currentFile" class="file-name">Google Sheet Not Loaded</span>
+        </p>
+
+        <p id="currentGoogleSheet" class="file-name" style="font-size: 14px; opacity: .8;">
+            <!-- Filled dynamically -->
+        </p>
+
+    </div>
+</div>
+
+
+        <!-- Table Display -->
+        <div class="glass-card table-card elegant-card">
+            <h2 class="section-title">👥 Clubs Overview</h2>
+            <p class="table-subtext">Loaded from the realtime database:</p>
+
+            <div class="table-wrapper">
+                <table id="stockTable">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Club Name</th>
+                            <th>Description</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data inserted dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+    <!-- Custom Popup -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-box">
+            <h2 id="popupTitle">Notification</h2>
+            <p id="popupMessage">Message goes here...</p>
+            <button id="popupOkBtn">OK</button>
+        </div>
+    </div>
+    </div>
+    
+    <script src="js/clubs.js"></script>
+</body>
+</html>

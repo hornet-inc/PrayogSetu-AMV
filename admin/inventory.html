@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrayogSetu Admin Dashboard</title>
+    <link rel="stylesheet" href="css/inventory.css">
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <!-- Tabletop.js to fetch Google Sheets -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.4/tabletop.min.js"></script>
+
+    <script src="js/firebase-core.js"></script>
+</head>
+<body>
+    <!-- Particle background -->
+    <canvas id="particles"></canvas>
+
+    <!-- Dashboard container -->
+    <div class="dashboard-container">
+
+<!-- Left Drawer -->
+<aside class="dashboard-drawer">
+    <!-- Drawer Title / Logo -->
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+        <a href="admindash.html" class="nav-item">
+            <span class="icon">🏠</span> Home
+        </a>
+        <a href="components.html" class="nav-item">
+            <span class="icon">🧩</span> Components
+        </a>
+        <a href="projects.html" class="nav-item">
+            <span class="icon">📁</span> Projects
+        </a>
+        <a href="blogs.html" class="nav-item">
+            <span class="icon">📝</span> Blogs
+        </a>
+        <a href="events.html" class="nav-item">
+            <span class="icon">📅</span> Events
+        </a>
+        <a href="inventory.html" class="nav-item active">
+            <span class="icon">📨</span> Inventory
+        </a>
+        <a href="clubs.html" class="nav-item">
+            <span class="icon">🎯</span> Clubs
+        </a>
+    </nav>
+
+    <!-- User Info + Logout -->
+    <div class="drawer-footer">
+        <div class="glass-card" style="padding:15px; text-align:center;">
+            <p id="loggedInName">-</p>
+            <p id="loggedInRole">Primary Admin</p>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="dashboard-main">
+
+<!-- ==========================
+     SECTION 1: COMPONENT REQUESTS
+=========================== -->
+<section id="componentRequests" class="dashboard-section active">
+    <div class="glass-card">
+        <h2>📦 Component Requests</h2>
+        <p>Approve, reject, deliver or take return of components requested by students.</p>
+
+        <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>User</th>
+                        <th>Roll Number</th>
+                        <th>Component</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Requested On</th>
+                        <th>Special Note</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="componentRequestsBody">
+                    <!-- JS will populate -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Component Detail Modal -->
+<div id="componentModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Component Details</h2>
+        <hr style="margin: 10px 0; border-color: rgba(255,255,255,0.3);" />
+
+        <p><strong>ID:</strong> <span id="modalComponentID"></span></p>
+        <p><strong>Name:</strong> <span id="modalComponentName"></span></p>
+
+        <p id="modalComponentDesc" style="margin-left: 10px;"></p>
+        <p><strong>Total Quantity:</strong> <span id="modalTotalQty"></span></p>
+        <p><strong>Available Quantity:</strong> <span id="modalAvailableQty"></span></p>
+        <p><strong>Description:</strong> <span id="modalRequestType"></span></p>
+
+        <div style="text-align: center; margin-top: 15px;">
+            <button id="modalOkBtn">OK</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Special Note Modal -->
+<div id="specialNoteModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Special Note</h3>
+        <p id="modalSpecialNote"></p>
+        <button id="specialOkBtn">OK</button>
+    </div>
+</div>
+
+
+
+
+    <!-- ==========================
+         SECTION 2: 3D PRINT JOBS
+    =========================== -->
+    <section id="printRequests" class="dashboard-section">
+        <div class="glass-card">
+            <h2>🖨️ 3D Print Requests</h2>
+            <p>Approve, reject or deliver 3D print jobs submitted by students.</p>
+
+            <div class="table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>User</th>
+                            <th>Model Name</th>
+                            <th>Material</th>
+                            <th>File</th>
+                            <th>Status</th>
+                            <th>Requested On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="printRequestsBody">
+                        <!-- JS will populate -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+  <!-- ==========================
+     SECTION 3: USER MESSAGES
+=========================== -->
+<section id="messages" class="dashboard-section">
+    <div class="glass-card">
+        <h2>💬 User Messages</h2>
+        <p>Read messages from users and reply individually.</p>
+
+        <div class="messages-layout">
+
+            <!-- LEFT: List of users -->
+            <div class="messages-userlist" id="messageUserList">
+                <!-- JS will populate user list -->
+            </div>
+
+            <!-- RIGHT: Chat window -->
+            <div class="messages-chat">
+
+                <!-- Chat header -->
+                <div class="chat-header" id="chatHeader">
+                <span id="chatHeaderText">Select a user to view messages</span>
+                <button id="deleteChatBtn" class="delete-btn" style="display:none;">Delete</button>
+                </div>
+
+                <div class="chat-body" id="chatBody">
+                    <!-- JS will load messages -->
+                </div>
+
+                <div class="chat-input-area">
+                    <input  
+                        type="text"
+                        id="chatInput"
+                        class="chat-input"
+                        placeholder="Type your reply..."
+                    />
+                    <button id="sendReplyBtn" class="btn primary" disabled>Send</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+</main>
+
+<div id="savePopup">
+    <p id="savePopupMessage">Status updated successfully!</p>
+    <button id="savePopupOk">OK</button>
+</div>
+
+    </div>
+    <script src="js/inventory.js"></script>
+</body>
+</html>
